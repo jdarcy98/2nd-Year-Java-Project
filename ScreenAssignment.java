@@ -3,7 +3,7 @@ package Assignment;
 /**********************************
  * Java Assignment
  * Jack Darcy - C16357773
- * 
+ * Abusive text content detector
  *********************************/
 
 import java.awt.FlowLayout;
@@ -23,9 +23,9 @@ import javax.swing.JTextField;
 		  private JButton button1; 
 		  private JButton button2; 
 		  private JButton button3; 
-		  private JTextField searchTerm;
+		  private JTextField profanityField;
 		  private JTextArea output;
-		  //private ArrayList<Person> people = new ArrayList();
+		  private ArrayList<SwearWords> words = new ArrayList();
 	 
 		  // Constructor
 	  
@@ -33,16 +33,16 @@ import javax.swing.JTextField;
 		  {
 			   super(title);
 			   setLayout(new FlowLayout());
-			   //searchTerm 	= new JTextField("Search for/ Enter word");
+			   profanityField 	= new JTextField("Search for word");
 
 			   
 			   
-			   //button1 	= new JButton("Search/ add bad word");
+			   button1 	= new JButton("Add bad words to search for");
 			   button2 	= new JButton("Show all");
 			   button3 	= new JButton("Delete all");
 			   
 			   
-			   add(searchTerm);
+			   add(profanityField);
 
 			   add(button1);
 			   add(button2);
@@ -66,31 +66,31 @@ import javax.swing.JTextField;
 		@Override
 		public void actionPerformed(ActionEvent arg0) 
 		{
-			Person p1; 
+			SwearWords s1; 
 			
-			if (arg0.getSource() == saveButton)
+			if (arg0.getSource() == button1)
 			{
 				
 					
-				p1 = new Person(firstName.getText(), surName.getText(), city.getText());
-				people.add(p1);
+				s1 = new SwearWords(profanityField.getText());
+				words.add(s1);
 							
-				JOptionPane.showMessageDialog(this, "just added " + p1.toString());
+				JOptionPane.showMessageDialog(this, "just added " + s1.toString());
 			
 			}
 			else 
 				
-			if (arg0.getSource() == showButton) 
+			if (arg0.getSource() == button2) 
 			{
 				
 				// button 2- print out all the array contents
 				
 			
 			    displayContents();
-				String fullOutput = "People on the list are: " + "\r\n";
+				String fullOutput = "Words to search for are: " + "\r\n";
 				
 				
-				for (Person element:  people)
+				for (SwearWords element:  words)
 				{	
 						fullOutput = fullOutput.concat(element.toString() + 
 								"\r\n");
@@ -102,8 +102,8 @@ import javax.swing.JTextField;
 			else
 			{
 				// must be the last button - to clear the contents
-				people.clear();
-				System.out.println("Did the clear");
+				words.clear();
+				System.out.println("Cleared");
 
 				
 			}

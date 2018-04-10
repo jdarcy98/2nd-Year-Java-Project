@@ -3,7 +3,7 @@ package Assignment;
 /**********************************
  * Java Assignment
  * Jack Darcy - C16357773
- * 
+ * Abusive text content detector
  *********************************/
 
 import java.io.File;
