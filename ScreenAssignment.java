@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 		  private JButton button1; 
 		  private JButton button2; 
 		  private JButton button3; 
+		  private JButton button4;
 		  private JTextField profanityField;
 		  private JTextArea output;
 		  private ArrayList<SwearWords> words = new ArrayList();
@@ -47,7 +48,11 @@ import javax.swing.JTextField;
 			   
 			   button3 	= new JButton("Delete all");
 			   add(button3);			   
-			   button3.addActionListener(this);			   
+			   button3.addActionListener(this);		
+			   
+			   button4 	= new JButton("Search");
+			   add(button4);			   
+			   button4.addActionListener(this);	
 			   
 
 			   output = new JTextArea ("data will go here");
@@ -82,7 +87,7 @@ import javax.swing.JTextField;
 				
 				// 2nd button is used to print out all the words which have been entered in
 				
-			    displayContents();
+			    showContents();
 				String fullOutput = "Words to search for are: " + "\r\n";
 				
 				
@@ -96,6 +101,8 @@ import javax.swing.JTextField;
 			}
 			
 			else
+				
+			if (arg0.getSource() == button4)
 			{
 				// must be the last button - to clear the contents
 				words.clear();
@@ -103,14 +110,35 @@ import javax.swing.JTextField;
 
 				
 			}
-	
 			
-				
-		 
-		}  // end ActionPerformed
+			else
+			{
+				/*Scanner sc = null;
+			    try {
+			        sc = new Scanner(new File("test.txt"));
+			        int count = 0;
+			        while(sc.hasNext()){
+			            String line = sc.nextLine();
+			            for(int i = 0 ; i < line.length(); i++){
+			                if(line.charAt(i) >= 'A' && line.charAt(i) <= 'Z'){
+			                    count ++;
+			                }
+			            }
+			        }
+			        System.out.println("The number of capital letters are : "+count);
+
+			    } catch (FileNotFoundException e) {
+			        System.out.println(e.getMessage());
+			    }
+			    finally{
+			        sc.close();
+			    }*/
+
+			}
+		} // end ActionPerformed
 
 
-		private void displayContents() {
+		private void showContents() {
 
 		}
 		
