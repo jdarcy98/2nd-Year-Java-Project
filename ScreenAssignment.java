@@ -34,26 +34,24 @@ import javax.swing.JTextField;
 			   super(title);
 			   setLayout(new FlowLayout());
 			   profanityField 	= new JTextField("Search for word");
-
+			   add(profanityField);
 			   
 			   
 			   button1 	= new JButton("Add bad words to search for");
-			   button2 	= new JButton("Show all");
-			   button3 	= new JButton("Delete all");
-			   
-			   
-			   add(profanityField);
-
 			   add(button1);
-			   add(button2);
-			   add(button3);
-
 			   button1.addActionListener(this);
-			   button2.addActionListener(this);
-			   button3.addActionListener(this);
+			   
+			   button2 	= new JButton("Show all");
+			   add(button2);	
+			   button2.addActionListener(this);			   
+			   
+			   button3 	= new JButton("Delete all");
+			   add(button3);			   
+			   button3.addActionListener(this);			   
+			   
 
-				output = new JTextArea ("data will go here");
-				add(output);
+			   output = new JTextArea ("data will go here");
+			   add(output);
 
 			   
 			   setLocation(300,300);
@@ -71,7 +69,6 @@ import javax.swing.JTextField;
 			if (arg0.getSource() == button1)
 			{
 				
-					
 				s1 = new SwearWords(profanityField.getText());
 				words.add(s1);
 							
@@ -83,9 +80,8 @@ import javax.swing.JTextField;
 			if (arg0.getSource() == button2) 
 			{
 				
-				// button 2- print out all the array contents
+				// 2nd button is used to print out all the words which have been entered in
 				
-			
 			    displayContents();
 				String fullOutput = "Words to search for are: " + "\r\n";
 				
