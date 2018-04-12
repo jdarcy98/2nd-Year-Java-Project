@@ -6,10 +6,8 @@ package Assignment;
  * Abusive text content detector
  *********************************/
 
-/*import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class FileReader
 {
@@ -34,7 +32,40 @@ public class FileReader
 	public String readLine()
 	{		
 			String line = "no line in file";
+			Scanner sc = null;
 		    try
+		    {
+		        sc = new Scanner(new File("test.txt"));
+		        int count = 0;
+		        while(sc.hasNext())
+		        {
+		            String sen = sc.nextLine();
+		            for(int i = 0 ; i < sen.length(); i++)
+		            {
+		                if(sen.charAt(i) >= 'A' && sen.charAt(i) <= 'Z')
+		                {
+		                    count ++;
+		                    if(count > 6)
+		                    {
+		                    	System.out.println();
+		                    }
+		                }
+		            }
+		        }
+
+		    } 
+		    
+		    catch (FileNotFoundException e)
+		    {
+		        System.out.println(e.getMessage());
+		    }
+		    
+		    finally
+		    {
+		        sc.close();
+		    }
+		    
+		    /*try
 			{
 		     // I don't need the scanner in any other method, so I can create it here.
 			 Scanner myScanner = new Scanner(fleExample);
@@ -51,9 +82,9 @@ public class FileReader
 			catch (FileNotFoundException e)
 			{
 				System.out.println(e.getMessage());
-			}
+			}*/
 
-		    return line;
+		   return line;
 			  
 			  
 	} // readLine
@@ -63,5 +94,5 @@ public class FileReader
 
 
 	
-*/
+
 

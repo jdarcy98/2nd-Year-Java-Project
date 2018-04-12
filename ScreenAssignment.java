@@ -6,15 +6,13 @@ package Assignment;
  * Abusive text content detector
  *********************************/
 
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
+
+
+
 
 	public class ScreenAssignment  extends JFrame implements ActionListener
 	{
@@ -113,26 +111,14 @@ import javax.swing.JTextField;
 			
 			else
 			{
-				/*Scanner sc = null;
-			    try {
-			        sc = new Scanner(new File("test.txt"));
-			        int count = 0;
-			        while(sc.hasNext()){
-			            String line = sc.nextLine();
-			            for(int i = 0 ; i < line.length(); i++){
-			                if(line.charAt(i) >= 'A' && line.charAt(i) <= 'Z'){
-			                    count ++;
-			                }
-			            }
-			        }
-			        System.out.println("The number of capital letters are : "+count);
-
-			    } catch (FileNotFoundException e) {
-			        System.out.println(e.getMessage());
-			    }
-			    finally{
-			        sc.close();
-			    }*/
+			
+				// Use the FileReader class created, to read in the text file textvalues.txt as specified in the lab
+				// To use the class, we have to create an object of it.  The constructor takes the file name. 					
+				FileReader fileReader = new FileReader("posts.txt");
+				
+				// then, use your filereader object to execute the methods you need.
+				fileReader.openFile();
+				String line = fileReader.readLine();
 
 			}
 		} // end ActionPerformed
