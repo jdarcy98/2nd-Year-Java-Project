@@ -33,11 +33,14 @@ import java.util.*;
 			   super(title);
 			   setLayout(new FlowLayout());
 			   profanityField 	= new JTextField("Search for word");
+			   profanityField.setPreferredSize(new Dimension(200,24));
 			   add(profanityField);
 			   
 			   
 			   button1 	= new JButton("Add bad words to search for");
+			   button1.setLayout(null);
 			   add(button1);
+			   button1.setBounds(100, 200, 10, 20);
 			   button1.addActionListener(this);
 			   
 			   button2 	= new JButton("Show all");
