@@ -35,9 +35,9 @@ public class FileReader
 			Scanner sc = null;
 		    try
 		    {
-		        sc = new Scanner(new File("test.txt"));
+		        sc = new Scanner(new File("posts.txt"));
 		        int count = 0;
-		        while(sc.hasNext())
+		        while(sc.hasNextLine())
 		        {
 		            String sen = sc.nextLine();
 		            for(int i = 0 ; i < sen.length(); i++)
@@ -45,9 +45,9 @@ public class FileReader
 		                if(sen.charAt(i) >= 'A' && sen.charAt(i) <= 'Z')
 		                {
 		                    count ++;
-		                    if(count > 6)
+		                    if(count >= 10)
 		                    {
-		                    	System.out.println();
+		                    	System.out.println("This person is shouting");
 		                    }
 		                }
 		            }
@@ -60,10 +60,10 @@ public class FileReader
 		        System.out.println(e.getMessage());
 		    }
 		    
-		    finally
+		    /*finally
 		    {
 		        sc.close();
-		    }
+		    }*/
 		    
 		    /*try
 			{

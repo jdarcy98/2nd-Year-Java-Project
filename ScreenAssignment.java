@@ -11,9 +11,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-
-
-
 	public class ScreenAssignment  extends JFrame implements ActionListener
 	{
 
@@ -33,14 +30,13 @@ import java.util.*;
 			   super(title);
 			   setLayout(new FlowLayout());
 			   profanityField 	= new JTextField("Search for word");
-			   profanityField.setPreferredSize(new Dimension(200,24));
+			   profanityField.setPreferredSize(new Dimension(100,24));
 			   add(profanityField);
-			   
+
 			   
 			   button1 	= new JButton("Add bad words to search for");
-			   button1.setLayout(null);
 			   add(button1);
-			   button1.setBounds(100, 200, 10, 20);
+			   button1.setPreferredSize(new Dimension(200,25));
 			   button1.addActionListener(this);
 			   
 			   button2 	= new JButton("Show all");
@@ -56,11 +52,11 @@ import java.util.*;
 			   button4.addActionListener(this);	
 			   
 
-			   output = new JTextArea ("data will go here");
+			   output = new JTextArea ("Words to search will go here");
 			   add(output);
 
 			   
-			   setLocation(300,300);
+			   setLocation(250,250);
 			   setSize(500,500);
 			   setVisible(true);
 			   		   
@@ -103,7 +99,7 @@ import java.util.*;
 			
 			else
 				
-			if (arg0.getSource() == button4)
+			if (arg0.getSource() == button3)
 			{
 				// must be the last button - to clear the contents
 				words.clear();
