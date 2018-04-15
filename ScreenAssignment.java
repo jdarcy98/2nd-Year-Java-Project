@@ -113,7 +113,7 @@ import java.util.*;
 			
 				// Use the FileReader class created, to read in the text file textvalues.txt as specified in the lab
 				// To use the class, we have to create an object of it.  The constructor takes the file name. 					
-				FileReader fileReader = new FileReader("posts.txt");
+				FileSearch fileReader = new FileSearch("posts.txt");
 				
 				// then, use your filereader object to execute the methods you need.
 				fileReader.openFile();
