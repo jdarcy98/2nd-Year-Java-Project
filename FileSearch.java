@@ -1,9 +1,9 @@
 package Assignment;
 
 /**********************************
- * Java Assignment
- * Jack Darcy - C16357773
- * Abusive text content detector
+  Java Assignment
+  Jack Darcy - C16357773
+  Abusive text content detector
  *********************************/
 
 import java.io.*;
@@ -39,6 +39,7 @@ public class FileSearch
 			String line2 = "Post is not abusive";
 			//Scanner sc = null;
 			int count = 0;
+			int count2 = 0;
 		    try
 		    {
 		    	//List<String> list = new ArrayList<>();
@@ -52,18 +53,31 @@ public class FileSearch
 		        
 		        	for(int i=0; i<words.size(); i++)
 		        	{
-		        		if(nextword.contains(words.get(i)))
+		        		if(nextword.contains(words.get(i)) )
 		        		{
 		        			line1 = "Word exists";
 		        			count++;
 		        		}
 		        		
 
-	        			if(count > 2)
+	        			if(count > 3)
 	        			{
 	        				line2 = "Post is abusive";
 	        			}
 		        	}
+		        	
+		        	/*String sen = sc.nextLine();
+		        	for(int i = 0 ; i < sen.length(); i++)
+		        	{
+		        		if(sen.charAt(i) >= 'A' && sen.charAt(i) <= 'Z')
+		        		{
+		        			count2++;
+		        			if(count2 > 10)
+		        			{
+		        				System.out.println("This person is shouting");
+		        			}
+		        		}
+		        	}*/
 		        	
 		        }	
 		        	
