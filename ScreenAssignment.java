@@ -8,6 +8,8 @@ package Assignment;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+
 import javax.swing.*;
 import java.util.*;
 
@@ -15,13 +17,16 @@ import java.util.*;
 	{
 
 		  // Declare GUI components as attributes of the screen
+		  private JPanel panel1;
+		  private JPanel panel2;
+		  private JLabel label1;
 		  private JButton button1; 
 		  private JButton button2; 
 		  private JButton button3; 
 		  private JButton button4;
 		  private JTextField profanityField;
 		  private JTextArea output;
-		  private ArrayList<SwearWords> words = new ArrayList();
+		  private ArrayList<String> words = new ArrayList<String>();
 	 
 		  // Constructor
 	  
@@ -29,26 +34,40 @@ import java.util.*;
 		  {
 			   super(title);
 			   setLayout(new FlowLayout());
-			   profanityField 	= new JTextField("Search for word");
+			   label1 = new JLabel("Abusive Text Detector");
+			   add(label1);
+			   panel1 = new JPanel();
+			   panel1.setPreferredSize(new Dimension(250,250));
+			   add(panel1);
+			   panel1.add(label1);
+			   
+			   panel2 = new JPanel();
+			   add(panel2);
+			   
+			   profanityField = new JTextField("Search for word");
 			   profanityField.setPreferredSize(new Dimension(100,24));
 			   add(profanityField);
-
+			   //panel1.add(profanityField);
 			   
 			   button1 	= new JButton("Add bad words to search for");
 			   add(button1);
+			   panel2.add(button1);
 			   button1.setPreferredSize(new Dimension(200,25));
 			   button1.addActionListener(this);
 			   
 			   button2 	= new JButton("Show all");
 			   add(button2);	
+			   panel2.add(button2);
 			   button2.addActionListener(this);			   
 			   
 			   button3 	= new JButton("Delete all");
-			   add(button3);			   
+			   add(button3);	
+			   panel2.add(button3);
 			   button3.addActionListener(this);		
 			   
 			   button4 	= new JButton("Search");
-			   add(button4);			   
+			   add(button4);		
+			   panel2.add(button4);
 			   button4.addActionListener(this);	
 			   
 
@@ -66,12 +85,12 @@ import java.util.*;
 		@Override
 		public void actionPerformed(ActionEvent arg0) 
 		{
-			SwearWords s1; 
+			String s1; 
 			
 			if (arg0.getSource() == button1)
 			{
 				
-				s1 = new SwearWords(profanityField.getText());
+				s1 = profanityField.getText();
 				words.add(s1);
 							
 				JOptionPane.showMessageDialog(this, "just added " + s1.toString());
@@ -88,7 +107,7 @@ import java.util.*;
 				String fullOutput = "Words to search for are: " + "\r\n";
 				
 				
-				for (SwearWords element:  words)
+				for (String element:  words)
 				{	
 						fullOutput = fullOutput.concat(element.toString() + 
 								"\r\n");
@@ -108,16 +127,17 @@ import java.util.*;
 				
 			}
 			
-			else
+			if (arg0.getSource() == button4)
 			{
 			
 				// Use the FileReader class created, to read in the text file textvalues.txt as specified in the lab
 				// To use the class, we have to create an object of it.  The constructor takes the file name. 					
-				FileSearch fileReader = new FileSearch("posts.txt");
+				FileSearch FileSearch = new FileSearch(words, "posts.txt");
 				
 				// then, use your filereader object to execute the methods you need.
-				fileReader.openFile();
-				String line = fileReader.readLine();
+				FileSearch.openFile();
+				FileSearch.readLine(words, "posts.txt");
+				
 
 			}
 		} // end ActionPerformed

@@ -16,63 +16,66 @@ public class FileSearch
 	String fileName;
 	File fleExample;
 	String searchFile;
+	private ArrayList<String> words;
+	Scanner sc;
 	
 	// the constructor just takes in the file name
-	public FileSearch (String fileName)
+	public FileSearch (ArrayList<String> words, String fileName)
 	{
+		this.words = new ArrayList<String>(words);
 		this.fileName = fileName;
 	}
 	
-	// open/ connect to the file. -
+	// open/ connect to the file.
 	public void openFile()
 	{
 		fleExample = new File(fileName);
 	}
 	
 	// read a line from the file, return the line as a String
-	public String readLine()
+	public void readLine(ArrayList<String> words, String fileName)
 	{		
-			String line = "no line in file";
-			//String word = "wank";
+			String line1 = "Word does not exist";
+			String line2 = "Post is not abusive";
 			//Scanner sc = null;
-			
+			int count = 0;
 		    try
 		    {
-		    	List<String> list = new ArrayList<>();
-		       	Scanner sc = new Scanner(fleExample);
-		        //int count = 0;
+		    	//List<String> list = new ArrayList<>();
+		       sc = new Scanner(fleExample);
 		        while(sc.hasNext())
 		        {
-		        	list.add(sc.next());
+		        	String nextword = sc.next();
+		        	//list.add(sc.next());
 		        	//System.out.println(list);
+		      
+		        
+		        	for(int i=0; i<words.size(); i++)
+		        	{
+		        		if(nextword.contains(words.get(i)))
+		        		{
+		        			line1 = "Word exists";
+		        			count++;
+		        		}
+		        		
+
+	        			if(count > 2)
+	        			{
+	        				line2 = "Post is abusive";
+	        			}
+		        	}
 		        	
 		        }	
-		        if(list.contains("wanker"))
-		        {
-		        	System.out.println("Word exists");
-		        }
 		        	
-		        else
-		        {
-		        	System.out.println("Word doesnt exist");
-		        }
-
-		        sc.close();
 		    } 
 		    
-		    catch (FileNotFoundException e)
+		    catch (Exception ex)
 		    {
-		        System.out.println(e.getMessage());
+		        System.out.println(ex.getMessage());
 		    }
-		   
-		    finally
-		    {
-		        
-		    }
-		    
 
-		   return line;
-			  
+		    System.out.println(line1);
+			System.out.println(line2);
 			  
 	} // readLine
 
