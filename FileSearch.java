@@ -17,6 +17,7 @@ public class FileSearch
 	File fleExample;
 	String searchFile;
 	private ArrayList<String> words;
+	private ArrayList<String> lines;
 	Scanner sc;
 	
 	// the constructor just takes in the file name
@@ -37,23 +38,27 @@ public class FileSearch
 	{		
 			String line1 = "Word does not exist";
 			String line2 = "Post is not abusive";
+			String line3 = "This person is not shouting";
+			String scanLine = "";
+			String[] split;
 			//Scanner sc = null;
 			int count = 0;
 			int count2 = 0;
 		    try
 		    {
-		    	//List<String> list = new ArrayList<>();
-		       sc = new Scanner(fleExample);
+		    	List<String> lines = new ArrayList<>();
+		        sc = new Scanner(fleExample);
 		        while(sc.hasNext())
 		        {
 		        	String nextword = sc.next();
-		        	//list.add(sc.next());
+		        	lines.add(sc.next());
+
 		        	//System.out.println(list);
 		      
 		        
 		        	for(int i=0; i<words.size(); i++)
 		        	{
-		        		if(nextword.contains(words.get(i)) )
+		        		if(nextword.contains(words.get(i)))
 		        		{
 		        			line1 = "Word exists";
 		        			count++;
@@ -65,22 +70,29 @@ public class FileSearch
 	        				line2 = "Post is abusive";
 	        			}
 		        	}
-		        	
-		        	/*String sen = sc.nextLine();
-		        	for(int i = 0 ; i < sen.length(); i++)
+
+		        }
+		        
+		        while(sc.hasNextLine())
+		        {
+		        	scanLine = scanLine + sc.nextLine();
+		        }
+	        	split = scanLine.split("\\.");
+	        	int length = split.length;
+		        
+		        for(int j = 0; j < length; j++)
 		        	{
-		        		if(sen.charAt(i) >= 'A' && sen.charAt(i) <= 'Z')
+		        		String singleWord = split[j];
+		        		lines.add(singleWord);
+		        		if(singleWord.charAt(j) >= 'A' && singleWord.charAt(j) <= 'Z')
 		        		{
-		        			count2++;
-		        			if(count2 > 10)
+		        			count++;
+		        			if(count > 9)
 		        			{
-		        				System.out.println("This person is shouting");
+		        				line3 = "This person is shouting";
 		        			}
 		        		}
-		        	}*/
-		        	
-		        }	
-		        	
+		        	}
 		    } 
 		    
 		    catch (Exception ex)
@@ -90,6 +102,7 @@ public class FileSearch
 
 		    System.out.println(line1);
 			System.out.println(line2);
+			System.out.println(line3);
 			  
 	} // readLine
 
