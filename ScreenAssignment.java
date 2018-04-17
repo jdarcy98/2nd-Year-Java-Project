@@ -15,10 +15,10 @@ import java.util.*;
 	{
 
 		  // Declare GUI components as attributes of the screen
-		  private JPanel panel1;
-		  private JPanel panel2;
-		  private JPanel panel3;
-		  private JPanel panel4;
+		  private JPanel titlePanel;
+		  private JPanel inputPanel;
+		  private JPanel buttonsPanel;
+		  private JPanel areaPanel;
 		  private JLabel label1;
 		  private JButton button1; 
 		  private JButton button2; 
@@ -35,30 +35,35 @@ import java.util.*;
 			   super(title);
 			   setLayout(new FlowLayout());
 			   setLocation(250,250);
-			   setSize(500,500);
+			   setSize(500,300);
 			   
-			   panel1 = new JPanel();
-			   panel1.setPreferredSize(new Dimension (500,40));
-			   panel1.setBackground(Color.RED);
-			   add(panel1);
+			   titlePanel = new JPanel();
+			   titlePanel.setPreferredSize(new Dimension (500,50));
+			   titlePanel.setBackground(Color.RED);
+			   add(titlePanel);
 			   
-			   panel2 = new JPanel();
-			   panel2.setPreferredSize(new Dimension(500,40));
-			   add(panel2);
+			   inputPanel = new JPanel();
+			   inputPanel.setPreferredSize(new Dimension(500,40));
+			   //inputPanel.setBackground(Color.WHITE);
+			   add(inputPanel);
 			   
-			   panel3 = new JPanel();
-			   panel3.setPreferredSize(new Dimension(500,40));
-			   add(panel3);
+			   buttonsPanel = new JPanel();
+			   buttonsPanel.setPreferredSize(new Dimension(500,40));
+			   buttonsPanel.setBackground(Color.BLUE);
+			   add(buttonsPanel);
 			   
-			   panel4 = new JPanel();
-			   panel4.setPreferredSize(new Dimension (500,40));
-			   add(panel4);
+			   areaPanel = new JPanel();
+			   areaPanel.setPreferredSize(new Dimension (500,170));
+			   areaPanel.setBackground(Color.BLACK);
+			   add(areaPanel);
 			   
 			   label1 = new JLabel("Abusive Text Detector");
 			   label1.setForeground(Color.WHITE);
+			   label1.setFont(new Font("Serif", Font.BOLD, 35));
 			   add(label1);
 			   
 			   profanityField = new JTextField("Search for word");
+			   profanityField.setPreferredSize(new Dimension (150,24));
 			   add(profanityField);
 			   
 			   button1 	= new JButton("Add bad words to search for");
@@ -81,12 +86,13 @@ import java.util.*;
 			   add(output);
 
 
-			   panel1.add(label1);
-			   panel3.add(profanityField);
-			   panel4.add(button1);
-			   panel4.add(button2);
-			   panel4.add(button3);
-			   panel4.add(button4);
+			   titlePanel.add(label1);
+			   inputPanel.add(profanityField);
+			   buttonsPanel.add(button1);
+			   buttonsPanel.add(button2);
+			   buttonsPanel.add(button3);
+			   buttonsPanel.add(button4);
+			   areaPanel.add(output);
 			  
 			   setVisible(true);
 			   		   
@@ -148,125 +154,126 @@ import java.util.*;
 			}
 		} // end ActionPerformed
 
-		public JPanel getPanel1() 
-		{
-			return panel1;
+
+
+		public JPanel getTitlePanel() {
+			return titlePanel;
 		}
 
-		public void setPanel1(JPanel panel1)
-		{
-			this.panel1 = panel1;
+
+		public void setTitlePanel(JPanel titlePanel) {
+			this.titlePanel = titlePanel;
 		}
 
-		public JPanel getPanel2()
-		{
-			return panel2;
+
+		public JPanel getInputPanel() {
+			return inputPanel;
 		}
 
-		public void setPanel2(JPanel panel2)
-		{
-			this.panel2 = panel2;
+
+		public void setInputPanel(JPanel inputPanel) {
+			this.inputPanel = inputPanel;
 		}
 
-		public JPanel getPanel3()
-		{
-			return panel3;
+		public JPanel getButtonsPanel() {
+			return buttonsPanel;
 		}
 
-		public void setPanel3(JPanel panel3)
-		{
-			this.panel3 = panel3;
+
+		public void setButtonsPanel(JPanel buttonsPanel) {
+			this.buttonsPanel = buttonsPanel;
 		}
 
-		public JPanel getPanel4()
-		{
-			return panel4;
+
+		public JPanel getAreaPanel() {
+			return areaPanel;
 		}
 
-		public void setPanel4(JPanel panel4)
-		{
-			this.panel4 = panel4;
+
+		public void setAreaPanel(JPanel areaPanel) {
+			this.areaPanel = areaPanel;
 		}
 
-		public JLabel getLabel1()
-		{
+
+		public JLabel getLabel1() {
 			return label1;
 		}
 
-		public void setLabel1(JLabel label1)
-		{
+
+		public void setLabel1(JLabel label1) {
 			this.label1 = label1;
 		}
 
-		public JButton getButton1() 
-		{
+
+		public JButton getButton1() {
 			return button1;
 		}
 
-		public void setButton1(JButton button1)
-		{
+
+		public void setButton1(JButton button1) {
 			this.button1 = button1;
 		}
 
-		public JButton getButton2()
-		{
+
+		public JButton getButton2() {
 			return button2;
 		}
 
-		public void setButton2(JButton button2)
-		{
+
+		public void setButton2(JButton button2) {
 			this.button2 = button2;
 		}
 
-		public JButton getButton3()
-		{
+
+		public JButton getButton3() {
 			return button3;
 		}
 
-		public void setButton3(JButton button3)
-		{
+
+		public void setButton3(JButton button3) {
 			this.button3 = button3;
 		}
 
-		public JButton getButton4()
-		{
+
+		public JButton getButton4() {
 			return button4;
 		}
 
-		public void setButton4(JButton button4)
-		{
+
+		public void setButton4(JButton button4) {
 			this.button4 = button4;
 		}
 
-		public JTextField getProfanityField()
-		{
+
+		public JTextField getProfanityField() {
 			return profanityField;
 		}
 
-		public void setProfanityField(JTextField profanityField)
-		{
+
+		public void setProfanityField(JTextField profanityField) {
 			this.profanityField = profanityField;
 		}
 
-		public JTextArea getOutput()
-		{
+
+		public JTextArea getOutput() {
 			return output;
 		}
 
-		public void setOutput(JTextArea output)
-		{
+
+		public void setOutput(JTextArea output) {
 			this.output = output;
 		}
 
-		public ArrayList<String> getWords()
-		{
+
+		public ArrayList<String> getWords() {
 			return words;
 		}
 
-		public void setWords(ArrayList<String> words)
-		{
+
+		public void setWords(ArrayList<String> words) {
 			this.words = words;
 		}
+
 
 		private void showContents() {
 

@@ -18,7 +18,6 @@ public class FileSearch
 	String searchFile;
 	private ArrayList<String> words;
 	private ArrayList<String> lines;
-	Scanner sc;
 	
 	// the constructor just takes in the file name
 	public FileSearch (ArrayList<String> words, String fileName)
@@ -41,24 +40,32 @@ public class FileSearch
 			String line3 = "This person is not shouting";
 			String scanLine = "";
 			String[] split;
+			//BufferedWriter bu = null;
 			//Scanner sc = null;
 			int count = 0;
 			int count2 = 0;
 		    try
 		    {
 		    	List<String> lines = new ArrayList<>();
-		        sc = new Scanner(fleExample);
-		        while(sc.hasNext())
+		        //sc = new Scanner(fleExample);
+		    	File file = new File("C:\\Users\\Admin\\Documents\\eclipse-workspace\\Assignment\\src\\Assignment\\Input.txt");
+		        FileWriter write = new FileWriter(file);
+		        BufferedWriter bu = new BufferedWriter(write);
+		        
+		        /*while(sc.hasNext())
 		        {
 		        	String nextword = sc.next();
-		        	lines.add(sc.next());
+		        	//lines.add(sc.next());
 
-		        	//System.out.println(list);
+		        	//System.out.println(list);*/
 		      
 		        
 		        	for(int i=0; i<words.size(); i++)
 		        	{
-		        		if(nextword.contains(words.get(i)))
+		        		bu.write(words.get(i));
+		        		bu.write(System.getProperty("line.separator"));
+		        		
+		        		/*if(nextword.contains(words.get(i)))
 		        		{
 		        			line1 = "Word exists";
 		        			count++;
@@ -68,12 +75,12 @@ public class FileSearch
 	        			if(count > 3)
 	        			{
 	        				line2 = "Post is abusive";
-	        			}
+	        			}*/
 		        	}
 
-		        }
+		        //}
 		        
-		        while(sc.hasNextLine())
+		        /*while(sc.hasNextLine())
 		        {
 		        	scanLine = scanLine + sc.nextLine();
 		        }
@@ -81,18 +88,18 @@ public class FileSearch
 	        	int length = split.length;
 		        
 		        for(int j = 0; j < length; j++)
+		        {
+		        	String singleWord = split[j];
+		        	lines.add(singleWord);
+		        	if(singleWord.charAt(j) >= 'A' && singleWord.charAt(j) <= 'Z')
 		        	{
-		        		String singleWord = split[j];
-		        		lines.add(singleWord);
-		        		if(singleWord.charAt(j) >= 'A' && singleWord.charAt(j) <= 'Z')
+		        		count++;
+		        		if(count > 9)
 		        		{
-		        			count++;
-		        			if(count > 9)
-		        			{
-		        				line3 = "This person is shouting";
-		        			}
+		        			line3 = "This person is shouting";
 		        		}
 		        	}
+		        }*/
 		    } 
 		    
 		    catch (Exception ex)
@@ -102,7 +109,7 @@ public class FileSearch
 
 		    System.out.println(line1);
 			System.out.println(line2);
-			System.out.println(line3);
+			//System.out.println(line3);
 			  
 	} // readLine
 
