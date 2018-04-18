@@ -5,157 +5,151 @@ package Assignment;
   Jack Darcy - C16357773
   Abusive text content detector
  *********************************/
-
+//Importing all necessary built-in classes
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-	public class ScreenAssignment  extends JFrame implements ActionListener
-	{
-
-		  // Declare GUI components as attributes of the screen
+	//A class to implement the screen with ActionListeners
+public class ScreenAssignment  extends JFrame implements ActionListener
+{
+		  // Declaring each GUI component to be used
 		  private JPanel titlePanel;
 		  private JPanel inputPanel;
 		  private JPanel buttonsPanel;
 		  private JPanel areaPanel;
 		  private JLabel label1;
-		  private JButton button1; 
-		  private JButton button2; 
-		  private JButton button3; 
-		  private JButton button4;
+		  private JButton addbutton; 
+		  private JButton deletebutton; 
+		  private JButton searchbutton;
 		  private JTextField profanityField;
-		  private JTextArea output;
+		  private JLabel label2;
 		  private ArrayList<String> words = new ArrayList<String>();
 	 
 		  // Constructor
-	  
 		  public ScreenAssignment (String title)
 		  {
+			   //Dimensions had to be set for all in order to fit into the screen properly
 			   super(title);
 			   setLayout(new FlowLayout());
 			   setLocation(250,250);
 			   setSize(500,300);
 			   
+			   //Panel for the heading of the screen
 			   titlePanel = new JPanel();
 			   titlePanel.setPreferredSize(new Dimension (500,50));
-			   titlePanel.setBackground(Color.RED);
 			   add(titlePanel);
 			   
+			   //Panel for where the user's input will be taken
 			   inputPanel = new JPanel();
 			   inputPanel.setPreferredSize(new Dimension(500,40));
-			   //inputPanel.setBackground(Color.WHITE);
 			   add(inputPanel);
 			   
+			   //Panel for each of the button's underneath the text field
 			   buttonsPanel = new JPanel();
 			   buttonsPanel.setPreferredSize(new Dimension(500,40));
-			   buttonsPanel.setBackground(Color.BLUE);
 			   add(buttonsPanel);
 			   
+			   //Panel for the message to warn user to erase what they've done for the next user
 			   areaPanel = new JPanel();
-			   areaPanel.setPreferredSize(new Dimension (500,170));
-			   areaPanel.setBackground(Color.BLACK);
+			   areaPanel.setPreferredSize(new Dimension (500,85));
 			   add(areaPanel);
 			   
+			   //Label for the heading of the screen, made bold so it stands out
 			   label1 = new JLabel("Abusive Text Detector");
-			   label1.setForeground(Color.WHITE);
 			   label1.setFont(new Font("Serif", Font.BOLD, 35));
 			   add(label1);
 			   
+			   //Text field to take in swear words and add to file/list
 			   profanityField = new JTextField("Search for word");
 			   profanityField.setPreferredSize(new Dimension (150,24));
 			   add(profanityField);
 			   
-			   button1 	= new JButton("Add bad words to search for");
-			   add(button1);
-			   button1.addActionListener(this);
+			   //Button to add swear words entered into text field int file/list
+			   addbutton = new JButton("Add bad words to search for");
+			   add(addbutton);
+			   addbutton.addActionListener(this);	
 			   
-			   button2 	= new JButton("Show all");
-			   add(button2);	
-			   button2.addActionListener(this);			   
+			   //Button to clear list and file
+			   deletebutton	= new JButton("Delete all");
+			   add(deletebutton);
+			   deletebutton.addActionListener(this);		
 			   
-			   button3 	= new JButton("Delete all");
-			   add(button3);
-			   button3.addActionListener(this);		
+			   //Button to search for swear words in posts.txt file
+			   searchbutton = new JButton("Search");
+			   add(searchbutton);		
+			   searchbutton.addActionListener(this);	
 			   
-			   button4 	= new JButton("Search");
-			   add(button4);		
-			   button4.addActionListener(this);	
-			   
-			   output = new JTextArea ("Words to search will go here");
-			   add(output);
+			   //Label to inform user to clear the list
+			   label2 = new JLabel ("Make sure you clear the list for the next user!");
+			   add(label2);
 
-
+			   //Adding each respective component to their corresponding panel
 			   titlePanel.add(label1);
 			   inputPanel.add(profanityField);
-			   buttonsPanel.add(button1);
-			   buttonsPanel.add(button2);
-			   buttonsPanel.add(button3);
-			   buttonsPanel.add(button4);
-			   areaPanel.add(output);
+			   buttonsPanel.add(addbutton);
+			   buttonsPanel.add(deletebutton);
+			   buttonsPanel.add(searchbutton);
+			   areaPanel.add(label2);
 			  
 			   setVisible(true);
 			   		   
-		  }
+		  }//end constructor
 
-
+		
+		//Action listeners
 		@Override
 		public void actionPerformed(ActionEvent arg0) 
 		{
+			//Strings to help pass arguments
 			String s1; 
-			
-			if (arg0.getSource() == button1)
+			String s2 = "";
+			String s3 = "";
+		
+			//Action listener for button 1
+			if (arg0.getSource() == addbutton)
 			{
+				//Getting text from the text field to enter into a blank file and blank list with message to confirm
 				s1 = profanityField.getText();
+				FileSearch fs1 = new FileSearch(s1);
+				fs1.writeLine(s1);
 				words.add(s1);
 							
 				JOptionPane.showMessageDialog(this, "just added " + s1.toString());
-			}
+				
+				
+				
+			}//end button 1
+			
 			else 
 				
-			if (arg0.getSource() == button2) 
+			//Action listener for button 2
+			if (arg0.getSource() == deletebutton)
 			{
-				// 2nd button is used to print out all the words which have been entered in
-				
-			    showContents();
-				String fullOutput = "Words to search for are: " + "\r\n";
-				
-				
-				for (String element:  words)
-				{	
-						fullOutput = fullOutput.concat(element.toString() + 
-								"\r\n");
-				        System.out.println(fullOutput);
-				}        
-				output.setText(fullOutput);			    
-			}
+				//This writes a blank character to a file to clear it with message to confirm
+				String word ="";
+				FileSearch fs2 = new FileSearch(word);
+				fs2.deleteLine();
+				System.out.println("Cleared");	
+			}//end button 2
+			
 			
 			else
 				
-			if (arg0.getSource() == button3)
+			//Action listener for button 3
+			if (arg0.getSource() == searchbutton)
 			{
-				// must be the last button - to clear the contents
-				words.clear();
-				System.out.println("Cleared");	
-			}
-			
-			if (arg0.getSource() == button4)
-			{
-			
-				// Use the FileReader class created, to read in the text file textvalues.txt as specified in the lab
-				// To use the class, we have to create an object of it.  The constructor takes the file name. 					
-				FileSearch FileSearch = new FileSearch(words, "posts.txt");
-				
-				// then, use your filereader object to execute the methods you need.
+				//Implementing the file to be searched and lines to be read
+				FileSearch FileSearch = new FileSearch(words, "C:\\\\Users\\\\Admin\\\\eclipse-workspace\\\\Assignment\\\\src\\\\Assignment\\\\posts.txt");
 				FileSearch.openFile();
-				FileSearch.readLine(words, "posts.txt");
-				
-
-			}
+				FileSearch.LineReader(words, s2);
+			}//end button 3
+			
 		} // end ActionPerformed
-
-
-
+			
+		
+		//Getters and Setter for all GUI components
 		public JPanel getTitlePanel() {
 			return titlePanel;
 		}
@@ -205,43 +199,33 @@ import java.util.*;
 		}
 
 
-		public JButton getButton1() {
-			return button1;
+		public JButton getaddbutton() {
+			return addbutton;
 		}
 
 
-		public void setButton1(JButton button1) {
-			this.button1 = button1;
+		public void setaddbutton(JButton addbutton) {
+			this.addbutton = addbutton;
 		}
 
 
-		public JButton getButton2() {
-			return button2;
+		public JButton getdeletebutton() {
+			return deletebutton;
 		}
 
 
-		public void setButton2(JButton button2) {
-			this.button2 = button2;
+		public void setdeletebutton(JButton deletebutton) {
+			this.deletebutton = deletebutton;
 		}
 
 
-		public JButton getButton3() {
-			return button3;
+		public JButton getsearchbutton() {
+			return searchbutton;
 		}
 
 
-		public void setButton3(JButton button3) {
-			this.button3 = button3;
-		}
-
-
-		public JButton getButton4() {
-			return button4;
-		}
-
-
-		public void setButton4(JButton button4) {
-			this.button4 = button4;
+		public void setsearchbutton(JButton searchbutton) {
+			this.searchbutton = searchbutton;
 		}
 
 
@@ -255,13 +239,13 @@ import java.util.*;
 		}
 
 
-		public JTextArea getOutput() {
-			return output;
+		public JLabel getlabel2() {
+			return label2;
 		}
 
 
-		public void setOutput(JTextArea output) {
-			this.output = output;
+		public void setlabel2(JLabel label2) {
+			this.label2 = label2;
 		}
 
 
@@ -273,12 +257,47 @@ import java.util.*;
 		public void setWords(ArrayList<String> words) {
 			this.words = words;
 		}
-
-
-		private void showContents() {
-
-		}
 		
-		  
+
+		public JButton getAddbutton() {
+			return addbutton;
+		}
+
+
+		public void setAddbutton(JButton addbutton) {
+			this.addbutton = addbutton;
+		}
+
+
+		public JButton getDeletebutton() {
+			return deletebutton;
+		}
+
+
+		public void setDeletebutton(JButton deletebutton) {
+			this.deletebutton = deletebutton;
+		}
+
+
+		public JButton getSearchbutton() {
+			return searchbutton;
+		}
+
+
+		public void setSearchbutton(JButton searchbutton) {
+			this.searchbutton = searchbutton;
+		}
+
+
+		public JLabel getLabel2() {
+			return label2;
+		}
+
+
+		public void setLabel2(JLabel label2) {
+			this.label2 = label2;
+		}
+
+
 } // end class
 

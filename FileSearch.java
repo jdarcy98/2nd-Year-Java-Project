@@ -5,116 +5,140 @@ package Assignment;
   Jack Darcy - C16357773
   Abusive text content detector
  *********************************/
-
+//Importing all necessary built-in classes
 import java.io.*;
 import java.util.*;
 
+//Class to search through a file which also contains a file writing and a file clearing constructor
 public class FileSearch
 {
 
-	// Attributes. 
+	//Declaring attributes 
 	String fileName;
 	File fleExample;
 	String searchFile;
 	private ArrayList<String> words;
 	private ArrayList<String> lines;
+	String word;
 	
-	// the constructor just takes in the file name
+	//Constructor to take in the file name (posts.txt)
 	public FileSearch (ArrayList<String> words, String fileName)
 	{
 		this.words = new ArrayList<String>(words);
 		this.fileName = fileName;
-	}
+	}//end first FileSearch
 	
-	// open/ connect to the file.
+	//Constructor to take in a word to an empty file
+	public FileSearch(String word)
+	{
+		this.word = word;
+	}//end second FileSearch
+	
+	//Opens the file
 	public void openFile()
 	{
 		fleExample = new File(fileName);
-	}
+	}//end openFile
 	
-	// read a line from the file, return the line as a String
-	public void readLine(ArrayList<String> words, String fileName)
+	//Reads the user's input and puts each word into an empty file on separate lines
+	public void writeLine(String word)
+	{
+		 BufferedWriter bu = null;
+		 try
+		 {
+		    	File file = new File("C:\\Users\\Admin\\eclipse-workspace\\Assignment\\src\\Assignment\\Input.txt");
+		        FileWriter write = new FileWriter(file.getAbsoluteFile(), true);
+		        bu = new BufferedWriter(write);
+		        
+		        bu.write(word);
+        		bu.write(System.getProperty("line.separator"));
+        		bu.close();
+		 }//end try
+		 
+		 catch (Exception ex)
+		 {
+		        System.out.println(ex.getMessage());
+		 }//end catch
+		 
+	}//end writeLine
+	
+	//When the user presses "Delete All" each word is removed and file is empty again
+	public void deleteLine()
+	{
+		BufferedWriter bu = null;
+		try
+		{
+			File file = new File("C:\\Users\\Admin\\eclipse-workspace\\Assignment\\src\\Assignment\\Input.txt");
+			FileWriter write = new FileWriter(file);
+			bu = new BufferedWriter(write);
+			bu.write("");
+			bu.close();
+		}//end try
+		
+		catch (Exception ex)
+		{
+		        System.out.println(ex.getMessage());
+		}//end catch
+		
+	}//end deleteLine
+	
+	//A method that attempts to search for the inputted words in a file with posts inside
+	@SuppressWarnings("unlikely-arg-type")
+	public void LineReader(ArrayList<String> words, String fileName)
 	{		
-			String line1 = "Word does not exist";
-			String line2 = "Post is not abusive";
-			String line3 = "This person is not shouting";
+			//String line1 = "Word does not exist";
+			//String line2 = "Post is not abusive";
 			String scanLine = "";
-			String[] split;
-			//BufferedWriter bu = null;
-			//Scanner sc = null;
+			String path = "C:\\\\Users\\\\Admin\\\\eclipse-workspace\\\\Assignment\\\\src\\\\Assignment\\\\posts.txt";
+			BufferedReader buf = null;
 			int count = 0;
-			int count2 = 0;
 		    try
 		    {
-		    	List<String> lines = new ArrayList<>();
-		        //sc = new Scanner(fleExample);
-		    	File file = new File("C:\\Users\\Admin\\Documents\\eclipse-workspace\\Assignment\\src\\Assignment\\Input.txt");
-		        FileWriter write = new FileWriter(file);
-		        BufferedWriter bu = new BufferedWriter(write);
+		        buf = new BufferedReader(new FileReader(path));
 		        
-		        /*while(sc.hasNext())
+		        //This loop tries to split the lines in the posts file, and search for the inputted words on each line, but to no avail
+		        while((scanLine = buf.readLine()) != null)
 		        {
-		        	String nextword = sc.next();
-		        	//lines.add(sc.next());
-
-		        	//System.out.println(list);*/
-		      
-		        
-		        	for(int i=0; i<words.size(); i++)
+		        	String[] lines = scanLine.split(".");
+		        	for(String element : lines)
 		        	{
-		        		bu.write(words.get(i));
-		        		bu.write(System.getProperty("line.separator"));
-		        		
-		        		/*if(nextword.contains(words.get(i)))
+		        		if(element.equals(words))
 		        		{
-		        			line1 = "Word exists";
+		        			System.out.println("Word exists");
 		        			count++;
 		        		}
+		        		else
+		        		{
+		        			System.out.println("Word doesn't exist");
+		        		}
 		        		
-
 	        			if(count > 3)
 	        			{
-	        				line2 = "Post is abusive";
-	        			}*/
-		        	}
-
-		        //}
-		        
-		        /*while(sc.hasNextLine())
-		        {
-		        	scanLine = scanLine + sc.nextLine();
-		        }
-	        	split = scanLine.split("\\.");
-	        	int length = split.length;
-		        
-		        for(int j = 0; j < length; j++)
-		        {
-		        	String singleWord = split[j];
-		        	lines.add(singleWord);
-		        	if(singleWord.charAt(j) >= 'A' && singleWord.charAt(j) <= 'Z')
-		        	{
-		        		count++;
-		        		if(count > 9)
-		        		{
-		        			line3 = "This person is shouting";
-		        		}
-		        	}
-		        }*/
-		    } 
+	        				System.out.println("Post is abusive");
+	        			}//if
+	        			
+	        			else
+	        			{
+	        				System.out.println("Post is not abusive");
+	        			}
+		        	}//end for
+		        }//end while
+		        	buf.close(); //Close the reader once finished 
+		         
+		    }//end try
 		    
-		    catch (Exception ex)
+		    //For exception handling
+		    catch(Exception ex)
 		    {
 		        System.out.println(ex.getMessage());
 		    }
 
-		    System.out.println(line1);
-			System.out.println(line2);
-			//System.out.println(line3);
+		    //System.out.println(line1);
+			//System.out.println(line2);
 			  
-	} // readLine
+		}//end LineReader
 
-
-} // end class	  
+}//end class	  
 
 
 	
